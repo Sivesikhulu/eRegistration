@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xml:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <title>ECESWA Electronic Registration System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Electronic Registration</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Update Contacts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Sign Out</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Help</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+        <h1 class="text-center">Add A New Student</h1>
+        <div class="card-body">
+          <form th:action="@{/getListStudents}" th:object="${student}" method="POST">
+            <div class="form-group">
+              <label>Centre Number</label>
+              <input type="text" name="centreNo" field="*{centreNo}" class="form-control" placeholder="Enter Centre Number">
+            </div>
+            <div class="form-group">
+              <label>Level</label>
+              <input type="text" name="levelCode" field="*{levelCode}" class="form-control" placeholder="Enter Level Code">
+            </div>
+
+            <div class="form-group">
+              <label> Student Surname</label>
+              <input type="text" name="studentLastName" field="*{studentLastName}" class="form-control" placeholder="Enter Surname">
+            </div>
+
+              <div class="form-group">
+                <label>Student First Name</label>
+                <input type="text" name="studentFirstName" field="*{studentFirstName}" class="form-control" placeholder="Enter Candidate's First Name">
+              </div>
+            <div class="form-group">
+              <label>Student Other Names</label>
+              <input type="text" name="studentOtherNames" field="*{studentOtherNames}" class="form-control" placeholder="Enter Candidate's other names">
+            </div>
+
+                <div class="form-group">
+                  <label> Gender</label>
+                  <br>
+                  <div>
+                  <label>Female<input type="radio" name="gender" field="*{gender}" class="form-control" value="Male"></label>
+                  <label>Male<input type="radio" name="gender" field="*{gender}" class="form-control" value="Female"></label>
+                  </div>
+
+                </div>
+
+                  <div class="form-group">
+                    <label>Eswatini ID</label><input type="text" name="SZID" field="*{SZID}" class="form-control" placeholder="Please enter Eswatini ID">
+                  </div>
+                   Or
+                   <br>
+                   <div class="form-group">
+                     <label>Foreign ID</label><input type="text" name="foreignId" field="*{foreignId}" class="form-control" placeholder="Please enter Foreign ID">
+                   </div>
+            <div class="form-group">
+              <label> Candidate Type
+              <br>
+              <div>
+                <label>Full Time
+                  <input type="radio" name="candidateType" field="*{candidateType}" class="form-control" value=1></label>
+                <label>Private
+                  <input type="radio" name="candidateType" field="*{candidateType}" class="form-control" value=3></label>
+              </div>
+              </label>
+            </div>
+                   <div class="form-group">
+                     <label>Date Of Birth</label><input type="date" name="dateOfBirth" field="*{dateOfBirth}" class="form-control">
+
+                   </div>
+
+              <div class="form-group">
+                <label> OVC
+                <br>
+                <div>
+                  <label>Yes
+                    <input type="radio" name="ovcStatus" field="*{ovcStatus}" class="form-control" value="Y"></label>
+                  <label>No
+                    <input type="radio" name="ovcStatus" field="*{ovcStatus}" class="form-control" value="N"></label>
+                </div>
+                </label>
+              </div>
+
+                   <div class="form-group">
+                     <label>Subjects</label>
+                     <br>
+                     <div>
+                       <label>English Language<input type="checkbox" name="Subject1" field="Subject1" class="form-control" value="111/"></label>
+                       <label>Mathematics<input type="checkbox" name="Subject2" field="Subject2" class="form-control" value="212/"></label>
+                       <br>
+                       <label>Siswati<input type="checkbox" name="Subject3" field="Subject3" class="form-control" value="414/"></label>
+                       <label>French<input type="checkbox" name="Subject4" field="Subject4" class="form-control" value="434/"></label>
+                       <br>
+                       <label>Science<input type="checkbox" name="Subject5" field="Subject5" class="form-control" value="513/"></label>
+                       <label>Social Studies<input type="checkbox" name="Subject6" field="Subject6" class="form-control" value="515/"></label>
+                       <br>
+                       <label>Agriculture<input type="checkbox" name="Subject7" field="Subject7" class="form-control" value="616/"></label>
+                       <label>Consumer Science<input type="checkbox" name="Subject8" field="Subject8" class="form-control" value="627/"></label>
+                       <br>
+                       <label>Religious Education<input type="checkbox" name="Subject9" field="Subject9" class="form-control" value="631/"></label>
+                       <label>Practical Arts and Technology<input type="checkbox" name="Subject10" field="Subject10" class="form-control" value="640/"></label>
+                     </div>
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Add Student</button>
+
+                  </div>
+          </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

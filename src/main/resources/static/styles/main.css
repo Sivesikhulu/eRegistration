@@ -1,0 +1,12 @@
+.button-container{
+display:flex;
+}
+.align-right{
+    text-align:right;
+    color:pink;
+}
+test{
+}
+.column{
+float:left;
+}

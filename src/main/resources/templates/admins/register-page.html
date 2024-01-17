@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>ECESWA eRegistration</title>
+</head>
+<body style="background-color:aliceblue;">
+<div class="container">
+    <h3>Register New Centre</h3>
+    <hr>
+    <p class="h4 mb-4">New Centre</p>
+    <form action="#" th:action="@{/admin/saveUser}" th:object="${webUsers}" method="POST">
+        <label for="username">Username</label>
+        <input  type="email" th:field="*{id}" id="username" class="form-control mb-4 w-25" placeholder="ECESWA granted email address" >
+        <label for="password">Password</label>
+        <input  type="text" th:field="*{pw}" id="password" class="form-control mb-4 w-25" placeholder="Password" required>
+        <label for="centre">Centre</label>
+        <input  type="text" th:field="*{centre}" id="centre" class="form-control mb-4 w-25" placeholder="Centre Number" required>
+        <label for="centreName">Centre Name</label>
+        <input  type="text" th:field="*{centreName}" id="centreName" class="form-control mb-4 w-25" placeholder="Centre Name in full" required>
+        <label for="mobile">Mobile No.</label>
+        <input  type="tel" pattern="[0-9]{8}" th:field="*{mobile}" id="mobile" class="form-control mb-4 w-25" placeholder="Mobile Number" required>
+        <br/>
+        <label>Region</label>
+        <br>
+        <input  type="radio" th:field="*{region}" value="Hhohho"/>Hhohho
+        <input  type="radio" th:field="*{region}" value="Lubombo"/>Lubombo
+        <input  type="radio" th:field="*{region}" value="Manzini"/>Manzini
+        <input  type="radio" th:field="*{region}" value="Shiselweni"/>Shiselweni
+        <br/>
+        <label>Certificate Level</label>
+        <br>
+        <input  type="radio" th:field="*{certificateLevel}" value="ROLE_EPC"/>EPC
+        <input  type="radio" th:field="*{certificateLevel}" value="ROLE_JC"/>JC
+        <input  type="radio" th:field="*{certificateLevel}" value="ROLE_EGCSE"/>EGCSE
+        <br>
+        <input  type="radio" th:field="*{certificateLevel}" value="ROLE_ADMIN"/>ADMIN
+        <br/>
+
+        <button type="submit" class="btn btn-info col-2" >Save Centre</button>
+
+
+    </form>
+    <hr>
+<!--    <a th:href="@{/2/list}">Back to Registration Report List</a>-->
+</div>
+</body>
+</html>

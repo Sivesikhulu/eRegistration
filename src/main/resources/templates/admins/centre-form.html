@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <title>ECESWA eRegistration</title>
+</head>
+<body style="background-color:aliceblue;">
+<div class="container">
+  <h3>Register Centre</h3>
+  <hr>
+  <p class="h4 mb-4">Correction for Candidate</p>
+  <form action="#" th:action="@{/13/save}" th:object="${candidate}" method="POST">
+
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{centre}">
+    <input type="hidden" th:field="*{year}">
+    <input type="hidden" th:field="*{certificateLevel}">
+    <label for="surname">Surname</label>
+    <input  type="text"  th:field="*{surname}" id="surname" class="form-control mb-4 w-25" placeholder="Surname" required>
+    <label for="names">Names</label>
+    <input  type="text" th:field="*{names}" id="names" class="form-control mb-4 w-25" placeholder="Names" required>
+    <br/>
+    <label required>Gender</label>
+    <input  type="radio" th:field="*{gender}" value="Male"/>Male
+    <input  type="radio" th:field="*{gender}" value="Female"/>Female
+    <br/>
+
+
+    <label for="dateOfBirth">Date of birth:</label>
+
+    <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" name="dateOfBirth" >
+    <br>
+    <label>OVC Status</label>
+    <input  type="radio" th:field="*{ovcStatus}" value="N"/>OVC
+    <input  type="radio" th:field="*{ovcStatus}" value="Y"/>Non-OVC
+    <br>
+    <label for="nationalId">PIN</label>
+    <input  type="text" minlength="13" maxlength="13" th:field="*{nationalId}" id="nationalId" class="form-control mb-4 w-25" placeholder="Swati PIN/ National ID">
+    <label for="foreignId">Foreign ID</label>
+    <input  type="text" th:field="*{foreignId}" id="foreignId" class="form-control mb-4 w-25" placeholder="Non-Swati ID">
+
+    <button type="submit" class="btn btn-info col-2" >Save Candidate</button>
+
+
+  </form>
+  <hr>
+  <a th:href="@{/13/list}">Back to Registration Report List</a>
+</div>
+</body>
+</html>

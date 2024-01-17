@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Console</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td><a th:href="@{/admin/addUsersForm}">Add User</a></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Unregistered Centres</td>
+        <td><a th:href="@{/admin/unregistered}">EPC</a></td>
+
+    </tr>
+    <tr>
+        <td></td>
+        <td>JC</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>EGCSE</td>
+    </tr>
+    <tr>
+        <td>Centre Profiles</td>
+        <td><a th:href="@{/admin/centreList/2}">EPC</a></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a th:href="@{/admin/centreList/3}">JC</a></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><a th:href="@{/admin/centreList/13}">EGCSE</a></td>
+    </tr>
+</table>
+</body>
+</html>

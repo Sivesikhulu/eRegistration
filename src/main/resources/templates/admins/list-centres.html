@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <title>ECESWA eRegistration</title>
+</head>
+
+<body style="background-color:aliceblue;">
+
+<div class="container">
+
+  <h3>List of Centres</h3>
+  <hr>
+  <div>
+    <a th:href="@{/admin/landing}" class="btn btn-primary btn-sm mb-3">Admin Home</a>
+    <form action="#" th:action="@{/logout}" method="POST">
+      <input type="submit" value="Logout" class="btn btn-secondary" style="margin-left:85%"></input>
+    </form>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th>Centre</th>
+      <th>Centre Name</th>
+      <th>Mobile</th>
+      <th>Alternative</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempCentre : ${webUsers}">
+
+      <td th:text="${tempCentre.centre}"/>
+      <td th:text="${tempCentre.centreName}"/>
+      <td th:text="${tempCentre.mobile}"/>
+      <td th:text="${tempCentre.mobile2}"/>
+      <td>
+        <a th:href="@{/admin/updateCentreForm(centreId=${tempCentre.id})}" class="btn btn-info btn-sm">Update</a>
+        <!--        <a th:href="@{/2/delete(centreId=${tempCentree.id})}" class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this Centre?'))) return false">Delete</a>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>
+
+
+

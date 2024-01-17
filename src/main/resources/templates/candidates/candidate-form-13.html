@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>ECESWA eRegistration</title>
+</head>
+
+<body style="background-color:aliceblue;">
+
+<ul class="nav nav-pills nav-fill gap-2 p-1 small bg-black rounded-5 shadow-sm" id="pillNav2" role="tablist"
+    style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-5 fw-bold" id="home-tab2" data-bs-toggle="tab" type="button" role="tab"
+                aria-selected="true">
+            <a th:href="@{/13/list}">Registration Report</a></button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5 fw-bold" id="profile-tab2" data-bs-toggle="tab" type="button"
+                role="tab" aria-selected="false">
+            <a th:href="@{/13/addCandidateForm}">Add New Candidate</a></button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <div>
+            <form th:action="@{/logout}" method="POST">
+                <button class="nav-link rounded-5 fw-bold" id="contact-tab2" data-bs-toggle="tab" type="button"
+                        role="tab" aria-selected="false">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </li>
+</ul>
+
+<div class="container d-flex justify-content-center vh-100 align-items-center">
+
+    <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card" style="background-color: lightgray;">
+            <div class="card-header text-white" style="background-color: black;"><b>CANDIDATE'S DETAILS</b></div>
+            <div class="card-body py-5 px-md-5">
+                <form action="#" th:action="@{/3/save}" th:object="${candidate}" method="POST">
+
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{centre}">
+                    <input type="hidden" th:field="*{year}">
+                    <input type="hidden" th:field="*{certificateLevel}">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="surname">Surname</label>
+                                <input type="text" th:field="*{surname}" id="surname" class="form-control"
+                                       placeholder="Surname" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="names">Names</label>
+                                <input type="text" th:field="*{names}" id="names" class="form-control"
+                                       placeholder="Names" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="nationalId">PIN</label>
+                                <input type="text" minlength="13" maxlength="13" th:field="*{nationalId}"
+                                       id="nationalId" class="form-control" placeholder="Swati PIN/ National ID">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="foreignId">Foreign ID</label>
+                                <input type="text" th:field="*{foreignId}" id="foreignId" class="form-control"
+                                       placeholder="Non-Swati ID">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label required>Gender</label><br>
+                            <input type="radio" th:field="*{gender}" value="Male"/>Male
+                            <input type="radio" th:field="*{gender}" value="Female"/>Female
+                        </div>
+                        <div class="col">
+                            <label for="dateOfBirth">Date of birth:</label>
+                            <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" name="dateOfBirth">
+                        </div>
+                    </div>
+
+                    <br>
+                    <label>OVC Status</label>
+                    <input type="radio" th:field="*{ovcStatus}" value="N"/>OVC
+                    <input type="radio" th:field="*{ovcStatus}" value="Y"/>Non-OVC
+                    <br>
+                    <label>Subjects</label><br>
+                    <input type="checkbox" th:field="*{subjects}" value="6870"/>First Language Siswati<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6871"/>Siswati as a Second Language<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6873"/>English Language<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6875"/>Literature in English<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6880/A"/>Mathematics Core
+                    <input type="checkbox" th:field="*{subjects}" value="6880/B"/>Mathematics Extended<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6882"/>Agriculture<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6884/A"/>Biology (Practical)
+                    <input type="checkbox" th:field="*{subjects}" value="6884/B"/>Biology (Alternative to Practical)<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6888/A"/>Physical Science (Practical)
+                    <input type="checkbox" th:field="*{subjects}" value="6888/B"/>Physical Science (Alternative to
+                    Practical)<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6890"/>Geography<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6891"/>History<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6893"/>Religious Education<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6896"/>Accounting<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6897"/>Business Studies<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6899"/>Economics<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6902/A"/>Design and Technology (Graphics)
+                    <input type="checkbox" th:field="*{subjects}" value="6902/B"/>Design and Technology (Resistant
+                    Material)<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6904"/>Fashion and Fabrics<br>
+                    <input type="checkbox" th:field="*{subjects}" value="6905"/>Food and Nutrition<br>
+                    <br/>
+                    <button type="submit" class="btn btn-info">Save Candidate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

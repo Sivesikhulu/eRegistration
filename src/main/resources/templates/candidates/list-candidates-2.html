@@ -23,11 +23,8 @@
             <a th:href="@{/2/addCandidateForm}">Add New Candidate</a></button>
     </li>
     <li class="nav-item" role="presentation">
-        <div>
         <button class="nav-link rounded-5 fw-bold" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">
-            <form th:action="@{/logout}" method="POST">
-                Logout</form></button>
-        </div>
+            <a th:href="@{/logout}">Logout</a></button>
     </li>
 </ul>
 
@@ -43,15 +40,20 @@
         <!--<a th:href="@{/2/addCandidateForm}" class="btn btn-primary btn-sm mb-3" style="margin-left:0%">New Candidate</a>
         <a th:href="@{/logout}" class="align-right">Logout</a>-->
         <div class="form-outline me-3" style="width:14rem">
-        <form th:action="@{/2/upload}" method="POST" enctype="multipart/form-data">
-            <div class="input-group">
-                <!--<label for="excelFile">Select Spreadsheet</label>-->
-                <!--<input class="form-control form-control-sm " type="file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+            <!--<form th:action="@{/2/upload}" method="POST" enctype="multipart/form-data">-->
+                <!--<div class="input-group">-->
+            <!--<label for="excelFile">Select Spreadsheet</label>
+            <input class="form-control form-control-sm " type="file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+        <button type="submit" class="btn btn-primary btn-sm" >Upload</button>-->
+                <!--<input class="form-control form-control-sm" type="file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                 <input type="submit" class="btn btn-primary btn-sm" value="Upload">-->
-                <input class="form-control form-control-sm" type="file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
-                <input type="submit" class="btn btn-primary btn-sm" value="Upload">
-            </div>
+            <!--</div>-->
         </form>
+            <form th:action="@{/2/upload}" method="POST" enctype="multipart/form-data">
+                <label for="excelFile">Select Spreadsheet</label>
+                <input type="file" id="excelFile" name="excelFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                <button type="submit">Upload</button>
+            </form>
         </div>
 
     </div>

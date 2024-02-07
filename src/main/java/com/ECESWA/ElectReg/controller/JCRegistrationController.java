@@ -76,7 +76,8 @@ public class JCRegistrationController {
          FileInputStream fis=new FileInputStream(uploadFile);
          MyUserDetails principal = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
          FileWriter theWriter= new FileWriter(principal.getAuthorities()+" "+principal.getCentreNumber()+"txt");
-        List<JCRegistration>candidates=new ArrayList<>();
+
+         List<JCRegistration>candidates=new ArrayList<>();
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
             XSSFSheet sheet=workbook.getSheet("candidates");

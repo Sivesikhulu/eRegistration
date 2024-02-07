@@ -3,12 +3,10 @@ package com.ECESWA.ElectReg.controller;
 import com.ECESWA.ElectReg.dao.PrimaryRegistrationRepository;
 import com.ECESWA.ElectReg.dao.UsersRepository;
 import com.ECESWA.ElectReg.entity.PrimaryRegistration;
-import com.ECESWA.ElectReg.entity.Users;
 import com.ECESWA.ElectReg.security.MyUserDetails;
 import com.ECESWA.ElectReg.service.PrimaryRegistrationService;
 import com.ECESWA.ElectReg.service.UsersService;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -19,10 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -72,22 +74,8 @@ public class PrimaryRegistrationController {
     public String getPrimaryRegistrationCandidatesDataFromExcel(@RequestParam("excelFile") MultipartFile file) throws IOException {
         File uploadFile=new File(file.getOriginalFilename());
         FileInputStream fis=new FileInputStream(uploadFile);
-        //fos.close();
-        /*String header= """
-                Error Report for Centres Registration""";
         MyUserDetails principal = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        try
-                (FileWriter theWriter= new FileWriter(principal.getAuthorities()+" "+principal.getCentreNumber()+".txt")){
-            theWriter.write(header);
-            theWriter.write(System.lineSeparator());*/
-
-
-        /*Path path= Path.of(principal.getAuthorities()+" "+principal.getCentreNumber()+".txt");
-        try{
-            Files.writeString(path, header);
-            } catch(IOException e){
-            e.printStackTrace();
-        }*/
+        FileWriter theWriter= new FileWriter(principal.getAuthorities()+ " "+ principal.getCentreNumber());
 
         List<PrimaryRegistration>candidates=new ArrayList<>();
         try {
@@ -107,7 +95,7 @@ public class PrimaryRegistrationController {
                 while(cellIterator.hasNext()){
                     //List<String> tempSubjects =null;
                     Cell cell= cellIterator.next();
-                    ArrayList<String> tempSubjects = new ArrayList<String>();
+                    //ArrayList<String> tempSubjects = new ArrayList<String>();
                     switch(cellIndex){
 
                         case 0 ->candidate.setCentre((int) cell.getNumericCellValue());
@@ -123,18 +111,7 @@ public class PrimaryRegistrationController {
                             }else candidate.setNationalId(cell.getStringCellValue());
                         }
                         case 8 ->candidate.setForeignId(cell.getStringCellValue());
-                        case 9->tempSubjects.add(cell.getStringCellValue());
-                        case 10->tempSubjects.add(cell.getStringCellValue());
-                        case 11->tempSubjects.add(cell.getStringCellValue());
-                        case 12->tempSubjects.add(cell.getStringCellValue());
-                        case 13->tempSubjects.add(cell.getStringCellValue());
-                        case 14->tempSubjects.add(cell.getStringCellValue());
-                        case 15->tempSubjects.add(cell.getStringCellValue());
-                        case 16->tempSubjects.add(cell.getStringCellValue());
-                        case 17->{
-                            tempSubjects.add(cell.getStringCellValue());
-                            candidate.setSubjects(tempSubjects);}
-                        //candidate.setSubjects(Collections.singletonList(String.valueOf((int) cell.getNumericCellValue())));
+                        case 9->candidate.setSubjects(Collections.singletonList(cell.getStringCellValue()));
                         default->{
 
                         }

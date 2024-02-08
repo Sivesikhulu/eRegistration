@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -26,37 +27,27 @@ public class JCRegistration {
     private String gender;
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     @Column(name="dateofbirth")
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     @Column(name="nationalid")
     private String nationalId;
     @Column(name="foreignid")
     private String foreignId;
     @Column(name="subjects")
-    private List<String> subjects;
+    private Collection<String> subjects;
     @Column(name="certificatelevel")//, nullable = false, unique = true)
     private int certificateLevel;
     @Column(name="year")
     private int year;
     @Column(name="ovcstatus")
     private String ovcStatus;
+    @Column(name="noofsubjects")
+    private String numberOfSubjects;
 
     public JCRegistration() {
     }
 
-    public JCRegistration(int centre, String surname, String names, String gender, Date dateOfBirth, String nationalId, String foreignId, List<String> subjects, int certificateLevel, int year, String ovcStatus) {
-        this.centre = centre;
-        this.surname = surname;
-        this.names = names;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.nationalId = nationalId;
-        this.foreignId = foreignId;
-        this.subjects = subjects;
-        this.certificateLevel = certificateLevel;
-        this.year = year;
-        this.ovcStatus = ovcStatus;
-    }
+
 
     public int getId() {
         return id;
@@ -72,6 +63,22 @@ public class JCRegistration {
         return centre;
     }
 
+    public JCRegistration(int id, int centre, String surname, String names, String gender, String dateOfBirth, String nationalId, String foreignId, Collection<String> subjects, int certificateLevel, int year, String ovcStatus, String numberOfSubjects) {
+        this.id = id;
+        this.centre = centre;
+        this.surname = surname;
+        this.names = names;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.nationalId = nationalId;
+        this.foreignId = foreignId;
+        this.subjects = subjects;
+        this.certificateLevel = certificateLevel;
+        this.year = year;
+        this.ovcStatus = ovcStatus;
+        this.numberOfSubjects = numberOfSubjects;
+    }
+
     public void setCentre(int centre) {
         this.centre = centre;
     }
@@ -82,6 +89,14 @@ public class JCRegistration {
 
     public void setSurname(String surname) {
         this.surname = surname.toUpperCase();
+    }
+
+    public String getNumberOfSubjects() {
+        return numberOfSubjects;
+    }
+
+    public void setNumberOfSubjects(String numberOfSubjects) {
+        this.numberOfSubjects = numberOfSubjects;
     }
 
     public String getNames() {
@@ -100,11 +115,11 @@ public class JCRegistration {
         this.gender = gender;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -124,11 +139,11 @@ public class JCRegistration {
         this.foreignId = foreignId.toUpperCase();
     }
 
-    public List<String> getSubjects() {
+    public Collection<String> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<String> subjects) {
+    public void setSubjects(Collection<String> subjects) {
         this.subjects = subjects;
     }
 
@@ -164,14 +179,14 @@ public class JCRegistration {
                 ", surname='" + surname + '\'' +
                 ", names='" + names + '\'' +
                 ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", nationalId='" + nationalId + '\'' +
                 ", foreignId='" + foreignId + '\'' +
                 ", subjects=" + subjects +
                 ", certificateLevel=" + certificateLevel +
                 ", year=" + year +
                 ", ovcStatus='" + ovcStatus + '\'' +
+                ", numberOfSubjects='" + numberOfSubjects + '\'' +
                 '}';
     }
-
 }

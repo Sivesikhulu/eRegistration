@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 //import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -82,6 +83,7 @@ public class JCRegistrationController {
             XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
             XSSFSheet sheet=workbook.getSheet("candidates");
 
+            SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
             int rowIndex=9;
 
             for(Row row: sheet){
@@ -89,6 +91,7 @@ public class JCRegistrationController {
                     rowIndex++;
                     continue;
                 }
+                Collection<String> subjectList=new LinkedList<String>();
                 Iterator<Cell> cellIterator=row.iterator();
                 int cellIndex=0;
                 JCRegistration candidate=new JCRegistration();
@@ -100,22 +103,69 @@ public class JCRegistrationController {
                         case 3 ->candidate.setNames(cell.getStringCellValue());
                         case 4 -> {
                             if (cell.getStringCellValue()!="Y" ||cell.getStringCellValue()!="N"){
-                                theWriter.write("Enter correct OVS status for "+candidate.getSurname()+" "+candidate.getNames()+". Either 'Y' or 'N'");
+                                theWriter.write("Enter correct OVC status for "+candidate.getSurname()+" "+candidate.getNames()+". Either 'Y' or 'N'");
                                 candidate.setOvcStatus(cell.getStringCellValue());
                             }else candidate.setOvcStatus(cell.getStringCellValue());
                         }
                         case 5 ->candidate.setGender(cell.getStringCellValue());
-                        case 6 ->candidate.setDateOfBirth(cell.getDateCellValue());
-                        case 7 ->{
+                        case 6 ->{
+                            String formattedDate=sdf.format(cell.getDateCellValue());
+                            candidate.setDateOfBirth(formattedDate);
+                        }
+                        case 8 ->{
                             if (cell.getStringCellValue().length() !=13){
                                 theWriter.write("The PIN is incorrect for "+candidate.getSurname()+" "+candidate.getNames());
                                 candidate.setNationalId(cell.getStringCellValue());
                             }else candidate.setNationalId(cell.getStringCellValue());
                         }
-                        case 8 ->candidate.setForeignId(cell.getStringCellValue());
-                        case 9->candidate.setSubjects(Collections.singletonList(String.valueOf((int)cell.getNumericCellValue())));
-                        default->{
+                        case 9 ->candidate.setForeignId(cell.getStringCellValue());
+                        case 10->{
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            //candidate.setSubjects(Collections.singletonList(String.valueOf((int)cell.getNumericCellValue())));
+                        }
+                        case 11 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 12 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 13 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 14 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 15 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 16 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 17 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
+                        }
+                        case 18 -> {
+                            int subject= (int) cell.getNumericCellValue();
+                            subjectList.add(String.valueOf(subject));
+                            candidate.setSubjects(subjectList);
 
+                        }
+                        default->{
                         }
                     }
                     cellIndex++;

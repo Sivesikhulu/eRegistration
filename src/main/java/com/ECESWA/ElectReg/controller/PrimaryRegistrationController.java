@@ -93,9 +93,7 @@ public class PrimaryRegistrationController {
                 int cellIndex=0;
                 PrimaryRegistration candidate=new PrimaryRegistration();
                 while(cellIterator.hasNext()){
-                    //List<String> tempSubjects =null;
                     Cell cell= cellIterator.next();
-                    //ArrayList<String> tempSubjects = new ArrayList<String>();
                     switch(cellIndex){
 
                         case 0 ->candidate.setCentre((int) cell.getNumericCellValue());
@@ -122,17 +120,12 @@ public class PrimaryRegistrationController {
                 candidates.add(candidate);
             }
             primaryRegistrationRepo.saveAll(candidates);
-            /*theWriter.close();*/
+
         }catch (Exception e){
             e.getStackTrace();
         }
 
-
-        /*}catch(IOException ex){
-            ex.printStackTrace();
-        }*/
         fis.close();
-        //inputStream.close();
         return "redirect:/2/list";
     }
 

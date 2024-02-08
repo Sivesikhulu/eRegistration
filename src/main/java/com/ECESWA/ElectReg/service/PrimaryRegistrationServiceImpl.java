@@ -1,21 +1,35 @@
 package com.ECESWA.ElectReg.service;
 
+import com.ECESWA.ElectReg.dao.JCRegistrationRepository;
 import com.ECESWA.ElectReg.dao.PrimaryRegistrationRepository;
+import com.ECESWA.ElectReg.entity.JCRegistration;
 import com.ECESWA.ElectReg.entity.PrimaryRegistration;
 import com.ECESWA.ElectReg.entity.Users;
+import com.ECESWA.ElectReg.security.MyUserDetails;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.*;
+import java.util.*;
+
 @Service
 public class PrimaryRegistrationServiceImpl implements  PrimaryRegistrationService{
 
     private PrimaryRegistrationRepository primaryRegistrationRepository;
+    private final JCRegistrationRepository jCRegistrationRepository;
+
     @Autowired
-    public PrimaryRegistrationServiceImpl(PrimaryRegistrationRepository thePrimaryRegistrationRepository){
+    public PrimaryRegistrationServiceImpl(PrimaryRegistrationRepository thePrimaryRegistrationRepository,
+                                          JCRegistrationRepository jCRegistrationRepository){
         primaryRegistrationRepository=thePrimaryRegistrationRepository;
+        this.jCRegistrationRepository = jCRegistrationRepository;
     }
 
     @Override
@@ -56,6 +70,8 @@ public class PrimaryRegistrationServiceImpl implements  PrimaryRegistrationServi
         primaryRegistrationRepository.save(thePrimaryRegistration);
     }
 
+
+
     @Override
     public void deleteById(int theId) {
         primaryRegistrationRepository.deleteById(theId);
@@ -70,6 +86,7 @@ public class PrimaryRegistrationServiceImpl implements  PrimaryRegistrationServi
     public void deleteByCentre(int theCentre) {
         primaryRegistrationRepository.deleteByCentre(theCentre);
     }
+
 
 
 }
